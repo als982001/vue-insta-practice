@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Post v-for="(item, index) in data" :key="index" :item="item" />
+    <Post v-for="(item, index) in postData" :key="index" :item="item" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
     Post: PostComponentVue,
   },
   props: {
-    data: Array,
+    postData: Array,
   },
 };
 </script>

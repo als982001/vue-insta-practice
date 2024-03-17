@@ -9,7 +9,9 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :data="data" />
+  <Container :postData="postData" />
+
+  <button @click="showMore()">더 보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -20,8 +22,9 @@
 </template>
 
 <script>
+import axios from "axios";
 import ContainerComponentVue from "./components/ContainerComponent.vue";
-import data from "./assets/data.js";
+import postData from "./assets/data.js";
 
 export default {
   name: "App",
@@ -30,8 +33,30 @@ export default {
   },
   data() {
     return {
-      data,
+      postData,
+      moreDataIndex: 0,
     };
+  },
+  methods: {
+    showMore() {
+      axios
+        .get(
+          `${process.env.VUE_APP_MORE_DATA.replace(
+            ":index",
+            this.moreDataIndex
+          )}.json`
+        )
+        .then((res) => {
+          const { data } = res;
+
+          this.postData.push(data);
+
+          this.moreDataIndex = this.moreDataIndex ? 0 : 1;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
   },
 };
 </script>
@@ -114,4 +139,3 @@ ul {
   border-left: 1px solid #eee;
 }
 </style>
-import ContainerComponentVue from './components/ContainerComponent.vue';
