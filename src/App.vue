@@ -4,7 +4,8 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step == 1" @click="step++">Next</li>
+      <li v-if="step == 2" @click="publish()">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
@@ -45,7 +46,13 @@
     </button>
   </div>
 
-  <Container :postData="postData" :step="step" :myImageUrl="myImageUrl" />
+  <Container
+    :postData="postData"
+    :step="step"
+    :myImageUrl="myImageUrl"
+    :myContent="myContent"
+    @writeContent="this.myContent = $event.myContent"
+  />
 
   <button @click="showMore()">더 보기</button>
 
@@ -72,7 +79,8 @@ export default {
       postData,
       moreDataIndex: 0,
       step: 0,
-      myImageUrl: null,
+      myImageUrl: "",
+      myContent: "",
     };
   },
   methods: {
@@ -100,6 +108,21 @@ export default {
       let url = URL.createObjectURL(files[0]);
       this.myImageUrl = url;
       this.step++;
+    },
+    publish() {
+      const myPost = {
+        name: "user",
+        userImage: "",
+        postImage: this.myImageUrl,
+        likes: 0,
+        date: "May 15",
+        liked: false,
+        content: this.myContent,
+        filter: "perpetua",
+      };
+
+      this.postData.unshift(myPost);
+      this.step = 0;
     },
   },
 };

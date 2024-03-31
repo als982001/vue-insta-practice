@@ -6,9 +6,7 @@
     <div v-if="step === 1">
       <div
         class="upload-image"
-        :style="{
-          ...(myImageUrl && { backgroundImage: `url(${myImageUrl})` }),
-        }"
+        :style="{ backgroundImage: `url(${myImageUrl})` }"
       ></div>
       <div class="filters">
         <div class="filter-1"></div>
@@ -19,9 +17,12 @@
       </div>
     </div>
     <div v-if="step === 2">
-      <div class="upload-image"></div>
+      <div
+        class="upload-image"
+        :style="{ backgroundImage: `url(${myImageUrl})` }"
+      ></div>
       <div class="write">
-        <textarea class="write-box">write!</textarea>
+        <textarea @input="writeContent" class="write-box"></textarea>
       </div>
     </div>
   </div>
@@ -38,7 +39,13 @@ export default {
   props: {
     postData: Array,
     step: Number,
-    myImageUrl: String || null,
+    myImageUrl: String,
+    myContent: String,
+  },
+  methods: {
+    writeContent(e) {
+      this.$emit("writeContent", { myContent: e.target.value });
+    },
   },
 };
 </script>
