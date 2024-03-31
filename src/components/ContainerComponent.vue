@@ -4,7 +4,12 @@
       <Post v-for="(item, index) in postData" :key="index" :item="item" />
     </div>
     <div v-if="step === 1">
-      <div class="upload-image"></div>
+      <div
+        class="upload-image"
+        :style="{
+          ...(myImageUrl && { backgroundImage: `url(${myImageUrl})` }),
+        }"
+      ></div>
       <div class="filters">
         <div class="filter-1"></div>
         <div class="filter-1"></div>
@@ -33,6 +38,7 @@ export default {
   props: {
     postData: Array,
     step: Number,
+    myImageUrl: String || null,
   },
 };
 </script>

@@ -45,13 +45,13 @@
     </button>
   </div>
 
-  <Container :postData="postData" :step="step" />
+  <Container :postData="postData" :step="step" :myImageUrl="myImageUrl" />
 
   <button @click="showMore()">더 보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="uploadImage" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
@@ -72,6 +72,7 @@ export default {
       postData,
       moreDataIndex: 0,
       step: 0,
+      myImageUrl: null,
     };
   },
   methods: {
@@ -93,6 +94,12 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    uploadImage(e) {
+      let { files } = e.target;
+      let url = URL.createObjectURL(files[0]);
+      this.myImageUrl = url;
+      this.step++;
     },
   },
 };
