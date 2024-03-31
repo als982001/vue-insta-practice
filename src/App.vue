@@ -9,7 +9,43 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :postData="postData" />
+  <div :style="{ backgroundColor: 'pink', display: 'flex', width: '100%' }">
+    <button
+      :style="{
+        flex: '1 0 0',
+        backgroundColor: step === 0 ? 'black' : 'white',
+        color: step === 0 ? 'white' : 'black',
+        height: '32px',
+      }"
+      @click="step = 0"
+    >
+      게시물
+    </button>
+    <button
+      :style="{
+        flex: '1 0 0',
+        backgroundColor: step === 1 ? 'black' : 'white',
+        color: step === 1 ? 'white' : 'black',
+        height: '32px',
+      }"
+      @click="step = 1"
+    >
+      필터
+    </button>
+    <button
+      :style="{
+        flex: '1 0 0',
+        backgroundColor: step === 2 ? 'black' : 'white',
+        color: step === 2 ? 'white' : 'black',
+        height: '32px',
+      }"
+      @click="step = 2"
+    >
+      글쓰기
+    </button>
+  </div>
+
+  <Container :postData="postData" :step="step" />
 
   <button @click="showMore()">더 보기</button>
 
@@ -35,6 +71,7 @@ export default {
     return {
       postData,
       moreDataIndex: 0,
+      step: 0,
     };
   },
   methods: {
