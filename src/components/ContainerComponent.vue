@@ -9,11 +9,12 @@
         :style="{ backgroundImage: `url(${myImageUrl})` }"
       ></div>
       <div class="filters">
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+        <FilterBox
+          v-for="filter in filters"
+          :key="filter"
+          :filter="filter"
+          :imageUrl="myImageUrl"
+        />
       </div>
     </div>
     <div v-if="step === 2">
@@ -30,11 +31,45 @@
 
 <script>
 import PostComponentVue from "./PostComponent.vue";
+import FilterBox from "./FilterBox.vue";
 
 export default {
   name: "ContainerComponent",
   components: {
     Post: PostComponentVue,
+    FilterBox,
+  },
+  data() {
+    return {
+      filters: [
+        "aden",
+        "_1977",
+        "brannan",
+        "brooklyn",
+        "clarendon",
+        "earlybird",
+        "gingham",
+        "hudson",
+        "inkwell",
+        "kelvin",
+        "lark",
+        "lofi",
+        "maven",
+        "mayfair",
+        "moon",
+        "nashville",
+        "perpetua",
+        "reyes",
+        "rise",
+        "slumber",
+        "stinson",
+        "toaster",
+        "valencia",
+        "walden",
+        "willow",
+        "xpro2",
+      ],
+    };
   },
   props: {
     postData: Array,
