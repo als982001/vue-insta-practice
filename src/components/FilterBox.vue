@@ -8,7 +8,7 @@
     :class="['filter-item', filter]"
     :style="{ backgroundImage: `url(${imageUrl})` }"
   >
-    <slot name="filterName"></slot>
+    <slot name="filterName" :msg="msg"></slot>
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
   props: {
     imageUrl: String,
     filter: String,
+  },
+  data() {
+    return {
+      msg: "이 msg는 자식 컴포넌트로부터 온 것이다...",
+    };
   },
 };
 </script>

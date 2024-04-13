@@ -16,6 +16,7 @@
           :imageUrl="myImageUrl"
         >
           <template v-slot:filterName>{{ filter }}</template>
+          <!-- <template v-slot:default="present">{{ present.msg }}</template> -->
         </FilterBox>
       </div>
     </div>
