@@ -7,7 +7,9 @@
   <div
     :class="['filter-item', filter]"
     :style="{ backgroundImage: `url(${imageUrl})` }"
-  ></div>
+  >
+    <slot></slot>
+  </div>
 </template>
 
 <script>

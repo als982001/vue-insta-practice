@@ -14,7 +14,9 @@
           :key="filter"
           :filter="filter"
           :imageUrl="myImageUrl"
-        />
+        >
+          {{ filter }}
+        </FilterBox>
       </div>
     </div>
     <div v-if="step === 2">
