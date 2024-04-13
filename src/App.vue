@@ -120,7 +120,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.myContent,
-        filter: "perpetua",
+        filter: this.selectedFilter,
       };
 
       this.postData.unshift(myPost);

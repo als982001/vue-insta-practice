@@ -21,7 +21,7 @@
     </div>
     <div v-if="step === 2">
       <div
-        class="upload-image"
+        :class="['upload-image', selectedFilter]"
         :style="{ backgroundImage: `url(${myImageUrl})` }"
       ></div>
       <div class="write">
