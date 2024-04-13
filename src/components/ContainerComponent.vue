@@ -15,7 +15,7 @@
           :filter="filter"
           :imageUrl="myImageUrl"
         >
-          {{ filter }}
+          <template v-slot:filterName>{{ filter }}</template>
         </FilterBox>
       </div>
     </div>
