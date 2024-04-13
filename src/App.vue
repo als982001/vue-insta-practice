@@ -51,6 +51,7 @@
     :step="step"
     :myImageUrl="myImageUrl"
     :myContent="myContent"
+    :selectedFilter="selectedFilter"
     @writeContent="this.myContent = $event.myContent"
   />
 
@@ -81,6 +82,7 @@ export default {
       step: 0,
       myImageUrl: "",
       myContent: "",
+      selectedFilter: "",
     };
   },
   methods: {
@@ -124,6 +126,11 @@ export default {
       this.postData.unshift(myPost);
       this.step = 0;
     },
+  },
+  mounted() {
+    this.emitter.on("applyFilter", (selectedFilter) => {
+      this.selectedFilter = selectedFilter;
+    });
   },
 };
 </script>

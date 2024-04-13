@@ -7,6 +7,7 @@
   <div
     :class="['filter-item', filter]"
     :style="{ backgroundImage: `url(${imageUrl})` }"
+    @click="() => applyFilter(filter)"
   >
     <slot name="filterName"></slot>
   </div>
@@ -18,6 +19,11 @@ export default {
   props: {
     imageUrl: String,
     filter: String,
+  },
+  methods: {
+    applyFilter(filter) {
+      this.emitter.emit("applyFilter", filter);
+    },
   },
 };
 </script>

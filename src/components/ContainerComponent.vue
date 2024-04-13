@@ -5,7 +5,7 @@
     </div>
     <div v-if="step === 1">
       <div
-        class="upload-image"
+        :class="['upload-image', selectedFilter]"
         :style="{ backgroundImage: `url(${myImageUrl})` }"
       ></div>
       <div class="filters">
@@ -78,6 +78,7 @@ export default {
     step: Number,
     myImageUrl: String,
     myContent: String,
+    selectedFilter: String,
   },
   methods: {
     writeContent(e) {
