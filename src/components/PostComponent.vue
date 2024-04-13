@@ -10,7 +10,7 @@
     <div
       :class="['post-body', item.filter]"
       :style="{ backgroundImage: 'url(' + item.postImage + ')' }"
-      @click="$store.commit('handleLike', { index })"
+      @click="handleLikeMutation({ index })"
     ></div>
 
     <div class="post-content">
@@ -24,11 +24,18 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "PostComponent",
   props: {
     item: Object,
     index: Number,
+  },
+  methods: {
+    ...mapMutations({
+      handleLikeMutation: "handleLike", // handleLikeMutation이라는 이름으로 뮤테이션을 사용할 수 있게 함
+    }),
   },
 };
 </script>

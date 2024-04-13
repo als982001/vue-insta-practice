@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div>
-      {{ $store.state.testString }}
+      {{ testString }}
     </div>
     <ul class="header-button-left">
       <li>Cancel</li>
@@ -71,6 +71,7 @@
 <script>
 import ContainerComponentVue from "./components/ContainerComponent.vue";
 import store from "./store";
+import { mapState } from "vuex";
 
 export default {
   name: "App",
@@ -81,6 +82,7 @@ export default {
     postData() {
       return this.$store.state.data;
     },
+    ...mapState(["testString", "moreDataIndex"]),
   },
   data() {
     return {
