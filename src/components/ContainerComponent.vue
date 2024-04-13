@@ -1,7 +1,12 @@
 <template>
   <div>
     <div v-if="step === 0">
-      <Post v-for="(item, index) in postData" :key="index" :item="item" />
+      <Post
+        v-for="(item, index) in postData"
+        :key="index"
+        :item="item"
+        :index="index"
+      />
     </div>
     <div v-if="step === 1">
       <div

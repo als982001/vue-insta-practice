@@ -10,6 +10,7 @@
     <div
       :class="['post-body', item.filter]"
       :style="{ backgroundImage: 'url(' + item.postImage + ')' }"
+      @click="$store.commit('handleLike', { index })"
     ></div>
 
     <div class="post-content">
@@ -27,6 +28,7 @@ export default {
   name: "PostComponent",
   props: {
     item: Object,
+    index: Number,
   },
 };
 </script>

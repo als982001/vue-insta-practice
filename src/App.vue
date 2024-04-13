@@ -1,5 +1,8 @@
 <template>
   <div class="header">
+    <div>
+      {{ $store.state.testString }}
+    </div>
     <ul class="header-button-left">
       <li>Cancel</li>
     </ul>
@@ -68,16 +71,19 @@
 <script>
 import axios from "axios";
 import ContainerComponentVue from "./components/ContainerComponent.vue";
-import postData from "./assets/data.js";
 
 export default {
   name: "App",
   components: {
     Container: ContainerComponentVue,
   },
+  computed: {
+    postData() {
+      return this.$store.state.data;
+    },
+  },
   data() {
     return {
-      postData,
       moreDataIndex: 0,
       step: 0,
       myImageUrl: "",
