@@ -1,9 +1,11 @@
+import axios from "axios";
 import { createStore } from "vuex";
 
 const store = createStore({
   state() {
     return {
       testString: "test string",
+      moreDataIndex: 0,
       data: [
         {
           name: "Kim Hyun",
@@ -53,6 +55,36 @@ const store = createStore({
         state.data[index].likes = state.data[index].likes + 1;
         state.data[index].isLiked = true;
       }
+    },
+    handleAddData(state, payload) {
+      const { additionalData } = payload;
+
+      state.data.push(additionalData);
+    },
+    handleChangeMoreDataIndex(state) {
+      state.moreDataIndex = state.moreDataIndex ? 0 : 1;
+    },
+  },
+  actions: {
+    // ajax 요청 관련된 것들 저장하는 곳
+
+    getData(context) {
+      axios
+        .get(
+          `${process.env.VUE_APP_MORE_DATA.replace(
+            ":index",
+            context.state.moreDataIndex
+          )}.json`
+        )
+        .then((res) => {
+          const { data } = res;
+
+          context.commit("handleAddData", { additionalData: data });
+          context.commit("handleChangeMoreDataIndex");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
 });

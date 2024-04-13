@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import ContainerComponentVue from "./components/ContainerComponent.vue";
+import store from "./store";
 
 export default {
   name: "App",
@@ -84,7 +84,6 @@ export default {
   },
   data() {
     return {
-      moreDataIndex: 0,
       step: 0,
       myImageUrl: "",
       myContent: "",
@@ -93,23 +92,7 @@ export default {
   },
   methods: {
     showMore() {
-      axios
-        .get(
-          `${process.env.VUE_APP_MORE_DATA.replace(
-            ":index",
-            this.moreDataIndex
-          )}.json`
-        )
-        .then((res) => {
-          const { data } = res;
-
-          this.postData.push(data);
-
-          this.moreDataIndex = this.moreDataIndex ? 0 : 1;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      store.dispatch("getData");
     },
     uploadImage(e) {
       let { files } = e.target;
