@@ -34,7 +34,7 @@
       </div>
     </div>
     <div v-if="step === 3">
-      <MyPage />
+      <MyPage :step="step" />
     </div>
   </div>
 </template>

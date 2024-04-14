@@ -24,12 +24,18 @@
 
 <script>
 import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, toRefs } from "vue";
 
 export default {
   name: "MyPageComponent",
-  setup() {
+  props: {
+    step: Number,
+  },
+  setup(props) {
     let followers = ref([]);
+    let { step } = toRefs(props);
+    console.log(props);
+    console.log(`step: ${step.value}`);
 
     onMounted(() => {
       axios.get("/followers.json").then((res) => {
