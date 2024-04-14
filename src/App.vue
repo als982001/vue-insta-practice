@@ -10,7 +10,7 @@
       <li v-if="step == 1" @click="step++">Next</li>
       <li v-if="step == 2" @click="publish()">발행</li>
     </ul>
-    <img src="./assets/logo.png" class="logo" />
+    <img @click="() => (step = 3)" src="./assets/logo.png" class="logo" />
   </div>
 
   <div :style="{ backgroundColor: 'pink', display: 'flex', width: '100%' }">

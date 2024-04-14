@@ -33,18 +33,23 @@
         <textarea @input="writeContent" class="write-box"></textarea>
       </div>
     </div>
+    <div v-if="step === 3">
+      <MyPage />
+    </div>
   </div>
 </template>
 
 <script>
 import PostComponentVue from "./PostComponent.vue";
 import FilterBox from "./FilterBox.vue";
+import MyPageComponent from "./MyPageComponent.vue";
 
 export default {
   name: "ContainerComponent",
   components: {
     Post: PostComponentVue,
     FilterBox,
+    MyPage: MyPageComponent,
   },
   data() {
     return {
